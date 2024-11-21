@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-def create_connection():
+def get_connection():
     """Create and return a connection to the MySQL database."""
     try:
         connection = mysql.connector.connect(

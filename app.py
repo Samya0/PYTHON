@@ -1,4 +1,4 @@
-from config.database import create_connection
+from config.database import get_connection
 from flask import Flask
 import os
 from dotenv import load_dotenv
@@ -9,7 +9,7 @@ load_dotenv()
 app = Flask(__name__)
 
 # Initialize the database connection
-db_connection = create_connection()
+db_connection = get_connection()
 
 # Set up a basic route
 @app.route("/")
