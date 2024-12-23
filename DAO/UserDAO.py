@@ -16,6 +16,7 @@ class UserDAO:
                 cursor.execute(sql, (user.getName(), user.getLogin(), user.getPassword))
                 connection.commit()
             except mysql.connector.Error as err:
+                connection.rollback()
                 print(f"Error during insert: {err}")  #need a roolback to improve next time
             finally:
                 cursor.close()
@@ -69,6 +70,7 @@ class UserDAO:
                     cursor.execute(sql,(user.getLogin(),user.getUserId()))
                     connection.commit() #bad practice to commit multiple times to improve after
             except mysql.connector.Error as err:
+                connection.rollback()
                 print(f"Error during updating {err} ")
             finally:
                 cursor.close()
