@@ -24,4 +24,36 @@ class ClientDAO:
                 cursor.close()
                 connection.close()   
     # def getOne():
+    def getOne(self,client_id:int)->Client:
+        connection=get_connection()
+        if connection:
+            try:
+                cursor=connection.cursor()
+                cursor.execute("SELECT * FROM client WHERE client_id = %s", client_id)
+                clientDetails=cursor.fetchall()
+                return clientDetails
+            except mysql.connector.Error as err:
+                print(f"Error fetching client {err} ")
+            finally:
+                cursor.close() #to clean the cursor bu default in mysql no really need to close cursor just close connection but either way best practice to close it 
+                connection.close()
+    def getAll(self)-> list():
+        connection=get_connection
+        if connection:
+            try:
+                cursor=connection.cursor()
+                cursor.execute("SELECT * FROM client")
+                clientsDetails=cursor.fetchall()
+                return clientsDetails
+            except mysql.connector.Error as err:
+                    print(f"Error fetching client {err} ")
+            finally:
+                cursor.close() 
+                connection.close()
+
+
+
+
+                
+
         
